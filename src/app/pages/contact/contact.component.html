@@ -1,0 +1,52 @@
+<div class="container">
+
+    <form [formGroup]="contactForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)">
+        <div class="col-md-4 position-relative">
+            <label for="validationTooltip01" class="form-label">First name</label>
+            <input type="text" class="form-control" id="validationTooltip01" placeholder="First Name" formControlName="firstName"  [ngClass]="{'is-invalid': hasErrors('firstName', 'required')}" >
+            @if (hasErrors('firstName', 'required')) {
+            <div class="text-danger">This area is required</div>
+            }
+        </div>
+        <div class="col-md-4 position-relative">
+            <label for="validationTooltip02" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="validationTooltip02" value="Otto" formControlName="lastName" [ngClass]="{'is-invalid': hasErrors('lastName', 'required')}" >
+            @if (hasErrors('lastName', 'required')) {
+                <div class="text-danger">This area is required</div>
+            }
+        </div>
+        <div class="col-md-4 position-relative">
+            <label for="validationTooltipUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" formControlName="username"  [ngClass]="{'is-invalid': hasErrors('username', 'required') || hasErrors('username', 'minlength') }" >
+            @if (hasErrors('username', 'required')) {
+            <div class="text-danger">your username already exists </div>
+            }
+            @if (hasErrors('username', 'minlength')) {
+            <div class="text-danger">Your username is invalid, must have min 4 characters </div>
+            }
+        </div>
+        <div class="col-md-6 position-relative">
+            <label for="validationTooltip03" class="form-label">City</label>
+            <input type="text" class="form-control" id="validationTooltip03" formControlName="city" [ngClass]="{'is-invalid': hasErrors('city', 'required')}" >
+            @if(hasErrors('city', 'required')) {
+            <div class="text-danger">Please provide a valid city.</div>
+            }
+        </div>
+        <div class="col-md-6 position-relative">
+            <label for="validationTooltip04" class="form-label">State</label>
+            <select class="form-select" id="validationTooltip04" formControlName="state" [ngClass]="{'is-invalid': hasErrors('state', 'required')}">
+                <option selected disabled value="">Choose...</option>
+                <option>Medellin</option>
+                <option>Bogota</option>
+                <option>Pereira</option>
+            </select>
+            @if (hasErrors('state', 'required')) {
+            <div class="text-danger">Please select a valid state.</div>
+            }
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary" type="submit" [disabled]="!contactForm.valid" >Submit form</button>
+        </div>
+    </form>
+
+</div>
